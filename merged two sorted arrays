@@ -4,6 +4,11 @@
 // nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
 // Output: [1,2,2,3,5,6]
 
+// i will be at nums1[2], j will be at nums2[2], k will be at the end of nums1
+// nums1[2]> nums2[2], whichever is greater, it will go to the last nums1[k] place.
+// then with next elements it will be compared.
+// decrement the pointers, compare, with next element it will compare
+
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
