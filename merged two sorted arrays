@@ -9,6 +9,242 @@
 // then with next elements it will be compared.
 // decrement the pointers, compare, with next element it will compare
 
+/*
+Let’s do a **step-by-step dry run** of your code.
+
+### Input
+
+```cpp
+nums1 = [1,2,3,0,0,0]
+m = 3
+
+nums2 = [2,5,6]
+n = 3
+```
+
+### Initial pointers
+
+```cpp
+i = m - 1 = 2
+j = n - 1 = 2
+k = m + n - 1 = 5
+```
+
+So:
+
+```cpp
+i → nums1[2] = 3
+j → nums2[2] = 6
+k → nums1[5]
+```
+
+Current array:
+
+```cpp
+nums1 = [1,2,3,0,0,0]
+```
+
+---
+
+### Iteration 1
+
+Compare:
+
+```cpp
+nums1[i] = 3
+nums2[j] = 6
+```
+
+`6 > 3`
+
+So:
+
+```cpp
+nums1[k] = nums2[j]
+```
+
+```cpp
+nums1[5] = 6
+```
+
+Updated:
+
+```cpp
+nums1 = [1,2,3,0,0,6]
+```
+
+Move pointers:
+
+```cpp
+j--
+k--
+```
+
+Now:
+
+```cpp
+i = 2
+j = 1
+k = 4
+```
+
+---
+
+### Iteration 2
+
+Compare:
+
+```cpp
+nums1[2] = 3
+nums2[1] = 5
+```
+
+`5 > 3`
+
+Put `5` at `k`:
+
+```cpp
+nums1[4] = 5
+```
+
+Updated:
+
+```cpp
+nums1 = [1,2,3,0,5,6]
+```
+
+Pointers:
+
+```cpp
+i = 2
+j = 0
+k = 3
+```
+
+---
+
+### Iteration 3
+
+Compare:
+
+```cpp
+nums1[2] = 3
+nums2[0] = 2
+```
+
+`3 > 2`
+
+Put `3`:
+
+```cpp
+nums1[3] = 3
+```
+
+Updated:
+
+```cpp
+nums1 = [1,2,3,3,5,6]
+```
+
+Pointers:
+
+```cpp
+i = 1
+j = 0
+k = 2
+```
+
+---
+
+### Iteration 4
+
+Compare:
+
+```cpp
+nums1[1] = 2
+nums2[0] = 2
+```
+
+Since:
+
+```cpp
+nums1[i] > nums2[j]
+```
+
+is **false**, else block runs.
+
+Put `2` from `nums2`:
+
+```cpp
+nums1[2] = 2
+```
+
+Updated:
+
+```cpp
+nums1 = [1,2,2,3,5,6]
+```
+
+Pointers:
+
+```cpp
+i = 1
+j = -1
+k = 1
+```
+
+---
+
+### Exit first while loop
+
+Condition:
+
+```cpp
+while(i >= 0 && j >= 0)
+```
+
+fails because:
+
+```cpp
+j = -1
+```
+
+---
+
+### Second while loop
+
+```cpp
+while (j >= 0)
+```
+
+Also fails immediately.
+
+Why?
+
+Because `nums2` is exhausted. Remaining elements in `nums1` (`1,2`) are already in correct position.
+
+---
+
+### Final Output
+
+
+o/p: [1,2,2,3,5,6]
+
+
+### Pointer movement summary
+
+| Step  | i | j  | k | Action      | nums1         |
+| ----- | - | -- | - | ----------- | ------------- |
+| Start | 2 | 2  | 5 | compare 3,6 | [1,2,3,0,0,0] |
+| 1     | 2 | 1  | 4 | put 6       | [1,2,3,0,0,6] |
+| 2     | 2 | 0  | 3 | put 5       | [1,2,3,0,5,6] |
+| 3     | 1 | 0  | 2 | put 3       | [1,2,3,3,5,6] |
+| 4     | 1 | -1 | 1 | put 2       | [1,2,2,3,5,6] |
+
+Key idea: **Always fill from the back (`k`) to avoid overwriting useful elements in `nums1`.**
+
+*/
+
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
