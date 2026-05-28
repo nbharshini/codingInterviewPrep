@@ -455,7 +455,472 @@ sort(v.begin(), v.end());                     // ascending
 sort(v.begin(), v.end(), greater<int>());    // descending
 ```
 
-These are used a lot in LeetCode medium problems.
+A **vector of vectors** in C++ is basically a **2D dynamic array** (matrix-like structure).
+
+Syntax:
+
+```cpp id="mhix6z"
+vector<vector<int>> matrix;
+```
+
+Think of it like:
+
+```cpp id="spm2yj"
+[
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+```
+
+Each row is itself a vector.
+
+---
+
+## 1. Declaration
+
+### Empty 2D vector
+
+```cpp id="0yvj8n"
+vector<vector<int>> matrix;
+```
+
+---
+
+### Initialize with values
+
+```cpp id="qv1t16"
+vector<vector<int>> matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+```
+
+---
+
+### Fixed rows and columns
+
+3 rows and 4 columns initialized to 0:
+
+```cpp id="0b4j06"
+vector<vector<int>> matrix(3, vector<int>(4));
+```
+
+Output:
+
+```cpp id="5uk9i3"
+0 0 0 0
+0 0 0 0
+0 0 0 0
+```
+
+---
+
+### Fixed size with custom value
+
+Fill with 5:
+
+```cpp id="5kql3p"
+vector<vector<int>> matrix(3, vector<int>(4, 5));
+```
+
+Output:
+
+```cpp id="5yeihr"
+5 5 5 5
+5 5 5 5
+5 5 5 5
+```
+
+---
+
+## 2. Adding Elements
+
+### `push_back()`
+
+```cpp id="b0mvrw"
+vector<vector<int>> matrix;
+
+matrix.push_back({1,2,3});
+matrix.push_back({4,5,6});
+```
+
+Result:
+
+```cpp id="yw6lm7"
+[
+ [1,2,3],
+ [4,5,6]
+]
+```
+
+---
+
+### Add element to a row
+
+```cpp id="rjggx5"
+matrix[0].push_back(10);
+```
+
+Now:
+
+```cpp id="lymj3m"
+[
+ [1,2,3,10],
+ [4,5,6]
+]
+```
+
+---
+
+## 3. Access Elements
+
+Syntax:
+
+```cpp id="fqgbhe"
+matrix[row][column]
+```
+
+Example:
+
+```cpp id="v2uj0s"
+cout << matrix[1][2];
+```
+
+Output:
+
+```cpp id="epbx76"
+6
+```
+
+(2nd row, 3rd column)
+
+---
+
+## 4. Traversing 2D Vector
+
+### Using nested for loop
+
+```cpp id="is3s74"
+for(int i = 0; i < matrix.size(); i++) {
+
+    for(int j = 0; j < matrix[i].size(); j++) {
+        cout << matrix[i][j] << " ";
+    }
+
+    cout << endl;
+}
+```
+
+Output:
+
+```cpp id="y5wuhw"
+1 2 3
+4 5 6
+7 8 9
+```
+
+---
+
+### Range-based loop
+
+```cpp id="7kr5qm"
+for(auto row : matrix) {
+
+    for(int num : row) {
+        cout << num << " ";
+    }
+
+    cout << endl;
+}
+```
+
+---
+
+## 5. Input for 2D Vector
+
+Suppose `n = 3`, `m = 3`
+
+```cpp id="2ptc4e"
+int n = 3;
+int m = 3;
+
+vector<vector<int>> matrix(n, vector<int>(m));
+
+for(int i = 0; i < n; i++) {
+
+    for(int j = 0; j < m; j++) {
+        cin >> matrix[i][j];
+    }
+}
+```
+
+---
+
+## 6. Common LeetCode Pattern
+
+For graph/DFS/BFS problems:
+
+```cpp id="3j0ghz"
+vector<vector<int>> directions = {
+    {0,1},
+    {1,0},
+    {-1,0},
+    {0,-1}
+};
+```
+
+Used for moving:
+
+Right, Down, Up, Left.
+
+---
+
+## Example Program
+
+```cpp id="pbcm8x"
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+
+    vector<vector<int>> matrix = {
+        {1,2,3},
+        {4,5,6},
+        {7,8,9}
+    };
+
+    for(int i = 0; i < matrix.size(); i++) {
+
+        for(int j = 0; j < matrix[i].size(); j++) {
+            cout << matrix[i][j] << " ";
+        }
+
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+
+Output:
+
+```cpp id="k4o4vq"
+1 2 3
+4 5 6
+7 8 9
+```
+
+In C++, vectors can store **any data type**, not just `int`.
+
+General syntax:
+
+```cpp id="sf59iy"
+vector<dataType> name;
+```
+
+## 1. Vector of Integers
+
+```cpp id="f0v64h"
+vector<int> nums = {1, 2, 3};
+```
+
+---
+
+## 2. Vector of Strings
+
+```cpp id="fdl3sp"
+#include <string>
+
+vector<string> names = {"Harshini", "Nishant", "Rahul"};
+```
+
+Access:
+
+```cpp id="umkz1q"
+cout << names[0];
+```
+
+Output:
+
+```cpp id="hd2xdt"
+Harshini
+```
+
+Loop:
+
+```cpp id="0fslxv"
+for(string name : names) {
+    cout << name << " ";
+}
+```
+
+---
+
+## 3. Vector of Double
+
+Used for decimal values.
+
+```cpp id="1poh7o"
+vector<double> prices = {10.5, 20.8, 99.99};
+```
+
+Example:
+
+```cpp id="v0x3ep"
+for(double price : prices) {
+    cout << price << " ";
+}
+```
+
+Output:
+
+```cpp id="lzjkn8"
+10.5 20.8 99.99
+```
+
+---
+
+## 4. Vector of Float
+
+```cpp id="2pp33v"
+vector<float> marks = {90.5f, 88.2f};
+```
+
+---
+
+## 5. Vector of Char
+
+```cpp id="vk7dlh"
+vector<char> letters = {'a', 'b', 'c'};
+```
+
+Output:
+
+```cpp id="tihc4f"
+a b c
+```
+
+---
+
+## 6. Vector of Boolean
+
+```cpp id="tkrw5h"
+vector<bool> visited(5, false);
+```
+
+Common in graphs.
+
+Example:
+
+```cpp id="kfrd9r"
+visited[2] = true;
+```
+
+---
+
+## 7. Vector of Long Long
+
+For large numbers.
+
+```cpp id="xjl1tm"
+vector<long long> nums = {10000000000, 20000000000};
+```
+
+In competitive programming:
+
+```cpp id="zv08zz"
+vector<long long> arr;
+```
+
+Very common.
+
+---
+
+## 8. Vector of Pairs
+
+Stores two values together.
+
+```cpp id="mx3ih2"
+vector<pair<int, int>> vp;
+```
+
+Add:
+
+```cpp id="mx0o2d"
+vp.push_back({1, 10});
+vp.push_back({2, 20});
+```
+
+Access:
+
+```cpp id="p8rjml"
+cout << vp[0].first;
+cout << vp[0].second;
+```
+
+Output:
+
+```cpp id="z3pn4h"
+1
+10
+```
+
+Very common in:
+
+* intervals
+* graphs
+* sorting problems
+
+---
+
+## 9. Vector of Vector (2D)
+
+```cpp id="rjkp5v"
+vector<vector<int>> matrix;
+```
+
+---
+
+## 10. Vector of Custom Objects (Class)
+
+```cpp id="o0h8sy"
+class Student {
+public:
+    string name;
+    int age;
+};
+
+vector<Student> students;
+```
+
+---
+
+## Summary Table
+
+| Type          | Example                 |
+| ------------- | ----------------------- |
+| Integer       | `vector<int>`           |
+| String        | `vector<string>`        |
+| Double        | `vector<double>`        |
+| Float         | `vector<float>`         |
+| Character     | `vector<char>`          |
+| Boolean       | `vector<bool>`          |
+| Large integer | `vector<long long>`     |
+| Pair          | `vector<pair<int,int>>` |
+| 2D            | `vector<vector<int>>`   |
+
+Most commonly used in interviews:
+
+1. `vector<int>`
+2. `vector<string>`
+3. `vector<pair<int,int>>`
+4. `vector<vector<int>>`
+5. `vector<bool>` (visited arrays)
+6. `vector<long long>` (large constraints)
 
 
-Since you do C++ interviews, I can also give a **“vector cheat sheet for LeetCode”** with the exact operations commonly used in coding rounds.
+
