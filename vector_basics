@@ -923,4 +923,13 @@ Most commonly used in interviews:
 6. `vector<long long>` (large constraints)
 
 
+get vector at run time
 
+int n;
+cin >> n;
+
+vector<int> nums(n);
+
+for(int i = 0; i < n; i++) {
+    cin >> nums[i];
+}
