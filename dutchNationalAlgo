@@ -1,0 +1,2 @@
+Initialize low = 0, mid = 0, and high = length_of_array - 1.Loop while mid <= high:Case 0 (arr[mid] == 0): Swap arr[low] and arr[mid]. Increment both low and mid by 1.Case 1 (arr[mid] == 1): Do nothing except incrementing mid by 1.Case 2 (arr[mid] == 2): Swap arr[mid] and arr[high]. Decrement high by 1. 
+  Do not increment mid here, as the swapped element from high is uninspected.
