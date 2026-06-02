@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+
+using namespace std;
+
+class Solution {
+public:
+
+    vector<int> findUnion(vector<int>& arr1, vector<int>& arr2) {
+        unordered_set<int> hashSet;
+
+        insertElements(hashSet, arr1);
+        insertElements(hashSet, arr2);
+
+        vector<int> result;
+
+        for (int num : hashSet) {
+            result.push_back(num);
+        }
+
+        return result;
+    }
+
+    void insertElements(unordered_set<int>& hashSet, vector<int>& arr) {
+        int index = 0;
+
+        while (index < arr.size()) {
+            hashSet.insert(arr[index]);
+            index++;
+        }
+    }
+};
+
+int main() {
+    Solution solution;
+
+    vector<int> arr1 = {1, 2, 3, 4, 5};
+    vector<int> arr2 = {1, 2, 3,2};
+
+    vector<int> result = solution.findUnion(arr2, arr1);
+
+    int index = 0;
+
+    while (index < result.size()) {
+        cout << result[index] << " ";
+        index++;
+    }
+
+    return 0;
+}
