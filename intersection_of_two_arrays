@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+
+using namespace std;
+
+class Solution {
+public:
+
+    vector<int> findIntersection(vector<int>& arr1, vector<int>& arr2) {
+        unordered_set<int> hashSet;
+        vector<int> result;
+
+        insertElements(hashSet, arr1);
+        findCommonElements(hashSet, arr2, result);
+
+        return result;
+    }
+
+    void insertElements(unordered_set<int>& hashSet, vector<int>& arr) {
+        int index = 0;
+
+        while (index < arr.size()) {
+            hashSet.insert(arr[index]);
+            index++;
+        }
+    }
+
+    void findCommonElements(unordered_set<int>& hashSet,
+                            vector<int>& arr,
+                            vector<int>& result) {
+
+        int index = 0;
+
+        while (index < arr.size()) {
+
+            if (hashSet.count(arr[index])) {
+                result.push_back(arr[index]);
+
+                // Remove to avoid duplicates
+                hashSet.erase(arr[index]);
+            }
+
+            index++;
+        }
+    }
+};
+
+int main() {
+    Solution solution;
+
+    vector<int> arr1 = {1, 2, 2, 3, 4};
+    vector<int> arr2 = {2, 2, 3, 5};
+
+    vector<int> result = solution.findIntersection(arr1, arr2);
+
+    int index = 0;
+
+    while (index < result.size()) {
+        cout << result[index] << " ";
+        index++;
+    }
+
+    return 0;
+}
