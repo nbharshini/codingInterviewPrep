@@ -55,3 +55,8 @@ public:
         return result;
     }
 };
+
+Time Complexity
+O(N) → each node visited once
+Space Complexity
+O(N) → queue stores nodes level by level
