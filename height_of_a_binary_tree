@@ -56,3 +56,9 @@ int main() {
 
     return 0;
 }
+
+
+Time Complexity
+O(N) → every node visited once
+Space Complexity
+O(H) → recursion stack (H = height of tree)
