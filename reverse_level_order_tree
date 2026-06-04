@@ -1,0 +1,85 @@
+// Reverse level order tree
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int value) {
+        data = value;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+class Solution {
+public:
+    vector<int> reverseLevelOrder(Node* root) {
+        vector<int> result;
+
+        if (root == NULL) {
+            return result;
+        }
+
+        queue<Node*> q;
+        stack<int> st;
+
+        q.push(root);
+
+        while (!q.empty()) {
+            Node* currentNode = q.front();
+            q.pop();
+
+            st.push(currentNode->data);
+
+            if (currentNode->right != NULL) {
+                q.push(currentNode->right);
+            }
+
+            if (currentNode->left != NULL) {
+                q.push(currentNode->left);
+            }
+        }
+
+        while (!st.empty()) {
+            result.push_back(st.top());
+            st.pop();
+        }
+
+        return result;
+    }
+};
+
+int main() {
+    /*
+            10
+           /  \
+         20    30
+         / \
+       40   60
+    */
+
+    Node* root = new Node(10);
+
+    root->left = new Node(20);
+    root->right = new Node(30);
+
+    root->left->left = new Node(40);
+    root->left->right = new Node(60);
+
+    Solution obj;
+
+    vector<int> answer = obj.reverseLevelOrder(root);
+
+    cout << "Reverse Level Order Traversal: ";
+
+    for (int i = 0; i < answer.size(); i++) {
+        cout << answer[i] << " ";
+    }
+
+    return 0;
+}
