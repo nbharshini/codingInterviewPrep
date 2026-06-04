@@ -1,0 +1,57 @@
+// Level Order Traversal
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class TreeNode {
+public:
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode(int data) {
+        val = data;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+
+        if (root == NULL) {
+            return result;
+        }
+
+        queue<TreeNode*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            int levelSize = q.size();
+            vector<int> currentLevel;
+
+            while (levelSize > 0) {
+                TreeNode* currentNode = q.front();
+                q.pop();
+
+                currentLevel.push_back(currentNode->val);
+
+                if (currentNode->left != NULL) {
+                    q.push(currentNode->left);
+                }
+
+                if (currentNode->right != NULL) {
+                    q.push(currentNode->right);
+                }
+
+                levelSize--;
+            }
+
+            result.push_back(currentLevel);
+        }
+
+        return result;
+    }
+};
