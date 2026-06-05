@@ -1,0 +1,44 @@
+// same tree or not
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+    if(p==NULL && q==NULL)
+    return true;
+
+    if(p==NULL || q==NULL)
+    return false;
+   
+    return (p->val==q->val) && isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
+    }
+};
+
+
+TC: O(N)
+
+Space Complexity (SC)
+O(H)
+
+Where:
+
+H = height of tree
+
+This is because of the recursive call stack.
+
+| Complexity       |        Value |
+| ---------------- | -----------: |
+| Time Complexity  |     **O(N)** |
+| Space Complexity |     **O(H)** |
+| Worst Case SC    |     **O(N)** |
+| Balanced Tree SC | **O(log N)** |
