@@ -1,0 +1,39 @@
+/*Algorithm
+Find stack size n
+Calculate middle = n / 2
+Pop middle elements
+Top of stack is the middle element
+Code (without deleting middle)
+
+*/
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int findMiddle(stack<int> st) {
+
+    int middle = st.size() / 2;
+
+    while (middle > 0) {
+        st.pop();
+        middle--;
+    }
+
+    return st.top();
+}
+
+int main() {
+
+    stack<int> st;
+
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(4);
+    st.push(5);
+
+    cout << findMiddle(st);
+
+    return 0;
+}
